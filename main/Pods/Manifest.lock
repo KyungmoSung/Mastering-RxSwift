@@ -50,7 +50,7 @@ DEPENDENCIES:
   - RxGesture
   - RxKeyboard
   - RxReachability
-  - RxSwift (~> 5.0.0)
+  - RxSwift
   - RxSwiftExt
 
 SPEC REPOS:
@@ -86,6 +86,6 @@ SPEC CHECKSUMS:
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   RxSwiftExt: 0d2fd77523a169d1459be34961b996a194bdef0e
 
-PODFILE CHECKSUM: 83748d62a8ed30ec84e473df887cb482113cb550
+PODFILE CHECKSUM: c1bcb30e76b0a2fbf54a0d970d3dabf8bd5f9c7c
 
 COCOAPODS: 1.7.5

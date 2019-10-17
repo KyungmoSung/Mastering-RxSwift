@@ -22,21 +22,46 @@
 
 import UIKit
 import RxSwift
-
 /*:
  # Disposables
  */
+// Completed, Error로 종료되면 리소스 자동 해제
 
+Observable.from([1, 2, 3])
+    .subscribe(onNext: { elem in
+        print("Next", elem)
+    }, onError: { error in
+        print("Error", error)
+    }, onCompleted: {
+        print("Completed")
+    }, onDisposed: {
+        print("Disposed")
+    })
 
+var disposeBag = DisposeBag()
 
+Observable.from([1, 2, 3])
+    .subscribe {
+        print($0)
+    }
+    .disposed(by:disposeBag)
 
+disposeBag = DisposeBag() //DisposeBag 해제
 
+let subscription = Observable<Int>.interval(RxTimeInterval.seconds(1), scheduler: MainScheduler.instance)
+    .subscribe(onNext: { elem in
+        print("Next", elem)
+    }, onError: { error in
+        print("Error", error)
+    }, onCompleted: {
+        print("Completed")
+    }, onDisposed: {
+        print("Disposed")
+    })
 
-
-
-
-
-
+DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+    subscription.dispose() //Completed는 호출되지 않음
+}
 
 
 
