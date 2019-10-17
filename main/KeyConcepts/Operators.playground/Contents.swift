@@ -22,16 +22,19 @@
 
 import UIKit
 import RxSwift
-
 /*:
  # Operators
  */
 
 let bag = DisposeBag()
 
+// 연산자 호출 순서에 따라 다른결과가 나오기때문에 주의!
+
 Observable.from([1, 2, 3, 4, 5, 6, 7, 8, 9])
-   .subscribe { print($0) }
-   .disposed(by: bag)
+    .take(5) // 처음 5개만 방출
+    .filter { $0.isMultiple(of: 2) } // 짝수 필터링
+    .subscribe { print($0) }
+    .disposed(by: bag)
 
 
 
