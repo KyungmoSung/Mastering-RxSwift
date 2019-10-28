@@ -38,6 +38,8 @@ Observable<Int>.create { (observer) -> Disposable in
 // #2
 Observable.from([0,1])
 
+let observable = Observable.from([1, 2, 3])
+observable.subscribe { print($0) }
 
 
 
@@ -47,5 +49,9 @@ Observable.from([0,1])
 
 
 
-
+/*
+next(1)
+next(2)
+next(3)
+completed
 

@@ -27,7 +27,30 @@ import RxCocoa
 /*:
  # Relay
  */
-
+// Relay는 Subject를 랩핑하고 있음
+// next 이벤트만 전달
+// completed,error는 없음
+// 구독자가 disposed 되기 전까지
+// 주로 UI에 사용
 let bag = DisposeBag()
 
 
+let pRelay = PublishRelay<Int>()
+pRelay.subscribe {
+    print("1: \($0)")
+}
+.disposed(by: bag)
+
+pRelay.accept(1) //onNext 대신에 accept 사용
+
+let bRelay = BehaviorRelay(value: 1)
+bRelay.accept(2)
+
+bRelay.subscribe {
+    print("2: \($0)")
+}
+.disposed(by: bag)
+
+bRelay.accept(3)
+
+print(bRelay.value) // get-only

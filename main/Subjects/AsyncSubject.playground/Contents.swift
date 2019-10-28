@@ -27,10 +27,23 @@ import RxCocoa
 /*:
  # AsyncSubject
  */
-
+// 이전 subject들은 subject로 이벤트가 전달되면 구독자에게 바로 전달하지만
+// AsyncSubject는 Completed가 발생하면 마지막 next이벤트 하나를 구독자에게 전달
 let bag = DisposeBag()
 
 enum MyError: Error {
    case error
 }
+
+let subject = AsyncSubject<Int>()
+
+subject
+    .subscribe{ print($0) }
+    .disposed(by: bag)
+
+subject.onNext(1)
+subject.onNext(2)
+subject.onNext(3)
+//subject.onCompleted() // completed 기준으로 가장 최근의 next 전달
+subject.onError(MyError.error) // error발생시 최근의 next이벤트는 전달하지 않음 error만 전달
 
