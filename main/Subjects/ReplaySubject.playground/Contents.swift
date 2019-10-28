@@ -27,11 +27,37 @@ import RxSwift
 /*:
  # ReplaySubject
  */
-
+// 2개 이상의 이벤트를 저장하고 옵저버에게 전달하고 싶을때 사용
 let disposeBag = DisposeBag()
 
 enum MyError: Error {
    case error
 }
+
+let rSub = ReplaySubject<Int>.create(bufferSize: 3)
+
+(1...10).forEach{ rSub.onNext($0) }
+
+// 버퍼의 크기만큼 이벤트를 저장했다가 전달
+rSub.subscribe{ print("Observer 1 >> ", $0) }
+    .disposed(by: disposeBag)
+
+rSub.subscribe{ print("Observer 2 >> ", $0) }
+    .disposed(by: disposeBag)
+
+// 가장 마지막 이벤트가 삭제되고 새로운 이벤트가 저장됨
+rSub.onNext(11)
+
+// 구독을 시작할때 버퍼 크긴만큼 이벤트 전달
+rSub.subscribe{ print("Observer 3 >> ", $0) }
+    .disposed(by: disposeBag)
+
+rSub.onCompleted()
+//rSub.onError(MyError.error)
+
+// 이벤트 종료(Completed,error)와 상관없이 버퍼크기만큼의 이벤트 전달
+// next이벤트 buffer개 + 완료이벤트(Completed,error) = 3 + 1 = 4
+rSub.subscribe{ print("Observer 4 >> ", $0) }
+    .disposed(by: disposeBag)
 
 
