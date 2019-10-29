@@ -31,12 +31,10 @@ import RxSwift
 let disposeBag = DisposeBag()
 let element = "❤️"
 
-Observable.repeatElement(element)
-    .take(7) // 갯수를 지정하지 않으면 무한대로 방출
+Observable.repeatElement("A")
+    .take(3) // 갯수를 지정하지 않으면 무한대로 방출
     .subscribe { print($0) }
     .disposed(by: disposeBag)
-
-
 
 
 

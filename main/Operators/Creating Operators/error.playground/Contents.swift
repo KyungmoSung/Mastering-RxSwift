@@ -37,10 +37,10 @@ enum MyError: Error {
 }
 
 Observable<Void>.error(MyError.error)
-    .subscribe{ $0 }
+    .subscribe{ print($0) }
     .disposed(by: disposeBag)
 
-
+ 
 
 
 

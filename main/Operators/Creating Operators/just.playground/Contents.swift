@@ -31,7 +31,7 @@ let disposeBag = DisposeBag()
 let element = "😀"
 
 //파라미터로 전달한 단일 요소(element)를 그대로 방출
-Observable.just(element)
+Observable.just(1)
    .subscribe { event in print(event) }
    .disposed(by: disposeBag)
 

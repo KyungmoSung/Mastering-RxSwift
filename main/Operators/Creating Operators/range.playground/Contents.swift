@@ -30,7 +30,7 @@ import RxSwift
 let disposeBag = DisposeBag()
 
 //시작할 정수, 방출할 정수의 수
-Observable.range(start: 1, count: 10)
+Observable.range(start: 1, count: 5)
    .subscribe { print($0) }
    .disposed(by: disposeBag)
 

@@ -33,7 +33,7 @@ let orange = "🍊"
 let kiwi = "🥝"
 
 //파라미터로 전달한 요소(elements)들을 하나씩 방출
-Observable.of(apple, orange, kiwi)
+Observable.of(1, 2, 3)
    .subscribe { element in print(element) }
    .disposed(by: disposeBag)
 

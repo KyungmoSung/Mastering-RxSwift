@@ -31,10 +31,9 @@ let disposeBag = DisposeBag()
 let fruits = ["🍏", "🍎", "🍋", "🍓", "🍇"]
 
 //배열의 요소들을 순서대로 방출
-Observable.from(fruits)
+Observable.from([1,2,3])
    .subscribe { element in print(element) }
    .disposed(by: disposeBag)
-
 
 
 
