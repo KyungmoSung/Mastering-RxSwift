@@ -26,7 +26,17 @@ import RxSwift
  # Observables
  */
 // Observable 생성
+//직접 리소스를 해제시키고 종료하려면 `dispose()`를 호출하면 된다.
 
+//`DisposedBag`을 사용하여 여러개의 Disposable을 한꺼번에 관리하고 할당해제할 수 있다.
+
+    var disposeBag = DisposeBag()
+    
+    Observable.from([1, 2, 3])
+        .subscribe {
+            print($0)
+        }
+        .disposed(by:disposeBag)
 // #1
 Observable<Int>.create { (observer) -> Disposable in
     observer.onNext(1)
@@ -49,9 +59,4 @@ observable.subscribe { print($0) }
 
 
 
-/*
-next(1)
-next(2)
-next(3)
-completed
 

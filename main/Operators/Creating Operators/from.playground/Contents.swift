@@ -30,6 +30,7 @@ import RxSwift
 let disposeBag = DisposeBag()
 let fruits = ["🍏", "🍎", "🍋", "🍓", "🍇"]
 
+//배열의 요소들을 순서대로 방출
 Observable.from(fruits)
    .subscribe { element in print(element) }
    .disposed(by: disposeBag)

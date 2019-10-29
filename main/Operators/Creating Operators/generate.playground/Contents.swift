@@ -16,7 +16,7 @@
 //  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 //  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  OUT OF OR IN CONNECTION WITH THE SOFTWAR   E OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
 
@@ -31,10 +31,21 @@ let disposeBag = DisposeBag()
 let red = "🔴"
 let blue = "🔵"
 
+// 시작값, 조건, 증가값
+// 0~10까지 2씩 증가하는 옵저버블
+Observable.generate(initialState: 0, condition: { $0 <= 10 }, iterate: { $0 + 2 })
+    .subscribe{ print($0) }
+    .disposed(by: disposeBag)
 
+// 10~0까지 2씩 감소하는 옵저버블
+Observable.generate(initialState: 10, condition: { $0 >= 0}, iterate: { $0 - 2 })
+    .subscribe{ print($0) }
+    .disposed(by: disposeBag)
 
-
-
+// 빨간,파란공을 번갈아 방출하는 옵저버블
+Observable.generate(initialState: red, condition: { $0.count < 15 }, iterate: { $0.count.isMultiple(of: 2) ? $0 + red : $0 + blue })
+    .subscribe{ print($0) }
+    .disposed(by: disposeBag)
 
 
 

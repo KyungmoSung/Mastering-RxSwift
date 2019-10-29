@@ -32,10 +32,13 @@ let apple = "🍏"
 let orange = "🍊"
 let kiwi = "🥝"
 
+//파라미터로 전달한 요소(elements)들을 하나씩 방출
 Observable.of(apple, orange, kiwi)
    .subscribe { element in print(element) }
    .disposed(by: disposeBag)
 
+//배열도 그대로 방출
+//배열의 요소를 하나씩 방출하고 싶을땐 from 연산자 사용
 Observable.of([1, 2], [3, 4], [5, 6])
    .subscribe { element in print(element) }
    .disposed(by: disposeBag)

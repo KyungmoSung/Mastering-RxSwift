@@ -29,11 +29,13 @@ import RxSwift
 
 let disposeBag = DisposeBag()
 
+//시작할 정수, 방출할 정수의 수
 Observable.range(start: 1, count: 10)
    .subscribe { print($0) }
    .disposed(by: disposeBag)
 
-
+//시작값에서 1씩 증가하는 시퀀스 생성
+//증가되는 크기나 감소하는 시퀀스 생성은 generate 사용
 
 
 
