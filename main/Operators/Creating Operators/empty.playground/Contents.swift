@@ -26,8 +26,13 @@ import RxSwift
 /*:
  # empty
  */
-
+// empty, error 연산자가 생성한 옵저버블은 next이벤트를 전달하지 않음
+// -> 어떠한 요소도 방출하지 않음
 let disposeBag = DisposeBag()
+
+Observable<Void>.empty()
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
 
 
 

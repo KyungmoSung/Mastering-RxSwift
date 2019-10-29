@@ -27,10 +27,14 @@ import RxSwift
  # repeatElement
  */
 
+// 동일한 요소를 반복적으로 방출하는 연산자
 let disposeBag = DisposeBag()
 let element = "❤️"
 
-
+Observable.repeatElement(element)
+    .take(7) // 갯수를 지정하지 않으면 무한대로 방출
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
 
 
 

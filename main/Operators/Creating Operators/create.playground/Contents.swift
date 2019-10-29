@@ -26,13 +26,32 @@ import RxSwift
 /*:
  # create
  */
-
+//동작을 직접 제어하고 싶다면 create사용
 let disposeBag = DisposeBag()
 
 enum MyError: Error {
    case error
 }
 
+// 옵저버블을 파라미터로 받아 Disposable을 리턴하는 클로저를 전달
+Observable<String>.create{ (observer) -> Disposable in
+    guard let url = URL(string: "https://www.apple.com") else {
+        observer.onError(MyError.error)
+        return Disposables.create() //Disposable 이 아니라 Disposables
+    }
+    
+    guard let html = try? String(contentsOf: url, encoding: .utf8) else {
+        observer.onError(MyError.error)
+        return Disposables.create()
+    }
+    
+    observer.onNext(html)
+    observer.onCompleted()
+    
+    return Disposables.create()
+}
+    .subscribe { print($0) }
+    .disposed(by: disposeBag)
 
 
 
