@@ -26,9 +26,15 @@ import RxSwift
 /*:
  # ignoreElements
  */
-
+// 옵저버블이 방출하는 next이벤트를 필터링하고 completed,error만 방출
 let disposeBag = DisposeBag()
 let fruits = ["🍏", "🍎", "🍋", "🍓", "🍇"]
+
+Observable.from([1,2,3])
+    .ignoreElements()
+    .subscribe{ print($0) }
+    .disposed(by: disposeBag)
+
 
 
 

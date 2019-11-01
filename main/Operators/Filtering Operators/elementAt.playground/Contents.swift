@@ -26,11 +26,16 @@ import RxSwift
 /*:
  # elementAt
  */
-
+// 특정 인덱스에 위치한 요소를 제한적으로 방출
+// 구독자에게 하나의 next이벤트 전달하고 completed
 let disposeBag = DisposeBag()
 let fruits = ["🍏", "🍎", "🍋", "🍓", "🍇"]
 
 
+Observable.from([1,2,3])
+    .elementAt(2)
+    .subscribe{ print($0) }
+    .disposed(by: disposeBag)
 
 
 
