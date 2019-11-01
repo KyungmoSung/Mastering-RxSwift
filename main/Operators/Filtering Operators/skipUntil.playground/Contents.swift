@@ -29,3 +29,19 @@ import RxSwift
 
 let disposeBag = DisposeBag()
 
+// 옵저버블을 파라미터로 받음(트리거)
+// 옵저버블이 next이벤트를 전달하기 전까지 원본 옵저버블 전달하는 이벤트를 무시
+
+let subject = PublishSubject<Int>()
+let trigger = PublishSubject<Int>()
+
+subject
+    .skipUntil(trigger)
+    .subscribe{ print($0) }
+    .disposed(by: disposeBag)
+
+subject.onNext(1)
+
+trigger.onNext(0)
+
+subject.onNext(2)

@@ -29,4 +29,36 @@ import RxSwift
 
 let disposeBag = DisposeBag()
 
+// 파라미터에 전달하는 시간은 연산자가 next 이벤트를 방출할지 결정하는 조건으로 사용됨
+// 옵저버가 next 이벤트를 방출한다음 지정된 시간동안 이벤트를 방출하지 않는다면 해당시점에 가장 마지막으로 방출된 next이벤트를 구독자에게 전달함
+// 반대로 지정된 시간 이내에 또 다른 next이벤트를 방출했다면 타이머를 초기화함
+// 타이머를 초기화한후 다시 지정된 시간만큼 대기
+// 이 시간안에 이벤트가 방출되지 않는다면 마지막 이벤트를 방출하고
+// 이벤트가 방출되면 타이머를 다시 초기화
+
+let buttonTap = Observable<String>.create{ observer in
+    DispatchQueue.global().async {
+        for i in 1...10 {
+            observer.onNext("Tap \(i)")
+            Thread.sleep(forTimeInterval: 0.3)
+        }
+        
+        Thread.sleep(forTimeInterval: 1)
+        
+        for i in 11...20 {
+            observer.onNext("Tap \(i)")
+            Thread.sleep(forTimeInterval: 0.5)
+        }
+        
+        observer.onCompleted()
+    }
+    
+    
+    return Disposables.create()
+}
+
+buttonTap
+    .debounce(.milliseconds(1000), scheduler: MainScheduler.instance)
+    .subscribe{ print($0) }
+    .disposed(by: disposeBag)
 

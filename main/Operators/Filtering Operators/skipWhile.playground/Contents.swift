@@ -29,3 +29,10 @@ import RxSwift
 
 let disposeBag = DisposeBag()
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+// 클로저에 true로 리턴되는동안 무시
+// false 리턴한 이후부터 조건 없이 방출
+Observable.from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    .skipWhile { !$0.isMultiple(of: 2) }
+    .subscribe{ print($0) }
+    .disposed(by: disposeBag)

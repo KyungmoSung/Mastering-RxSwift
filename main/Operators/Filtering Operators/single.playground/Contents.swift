@@ -30,4 +30,30 @@ import RxSwift
 let disposeBag = DisposeBag()
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
+// 첫번째 요소, 조건과 일치하는 첫번째 요소만 방출
+// 옵저버블이 요소를 방출하지 않거나 2개 이상의 요소를 방출하면 에러 발생
+Observable.just(1)
+    .single()
+    .subscribe{ print($0) }
+    .disposed(by: disposeBag)
 
+Observable.from(numbers) // 에러
+    .single()
+    .subscribe{ print($0) }
+    .disposed(by: disposeBag)
+
+Observable.from(numbers)
+    .single{ $0 == 3 }
+    .subscribe{ print($0) }
+    .disposed(by: disposeBag)
+
+let subject = PublishSubject<Int>()
+
+subject
+    .single()
+    .subscribe{ print($0) }
+    .disposed(by: disposeBag)
+
+subject.onNext(100) //completed 이벤트가 전달되기 전까지 대기
+// completed 이벤트가 전달되는 시점에 하나의 요소만 방출된 상태라면 구독자에게 completed가 전달되고 그 사이에 다른 요소가 방출되었다면 구독자에게 error 이벤트 전달
+// 하나의 요소가 방출되는것을 보장

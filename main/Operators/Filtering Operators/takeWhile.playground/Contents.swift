@@ -30,4 +30,8 @@ import RxSwift
 let disposeBag = DisposeBag()
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-
+// 클로저가 false를 리턴하면 더이상 요소를 방출하지 않음
+Observable.from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+    .takeWhile{ !$0.isMultiple(of: 2) }
+    .subscribe{ print($0) }
+    .disposed(by: disposeBag)
