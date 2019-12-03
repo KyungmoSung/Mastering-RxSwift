@@ -28,3 +28,51 @@ import RxSwift
  */
 
 let disposeBag = DisposeBag()
+
+// 지정된 주기동안 하나의 이벤트만 구독자에게 전달
+// 짧은시간동안 반복되는 탭, 델리게이트는 쓰로틀
+// 디바운스는 보통 검색 기능
+
+let buttonTap = Observable<String>.create{ observer in
+    DispatchQueue.global().async {
+        for i in 1...10 {
+            observer.onNext("Tap \(i)")
+            Thread.sleep(forTimeInterval: 0.3)
+        }
+        
+        Thread.sleep(forTimeInterval: 1)
+        
+        for i in 11...20 {
+            observer.onNext("Tap \(i)")
+            Thread.sleep(forTimeInterval: 0.5)
+        }
+        
+        observer.onCompleted()
+    }
+    
+    
+    return Disposables.create()
+}
+
+
+//buttonTap
+//    .throttle(.milliseconds(1000), scheduler: MainScheduler.instance)
+//    .subscribe{ print($0) }
+//    .disposed(by: disposeBag)
+
+// 지정된 주기 마지막 이벤트를 전달(지정된 주기를 엄격하게 지킴)
+Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+.debug()
+.take(10)
+.throttle(.milliseconds(2500), latest: true, scheduler: MainScheduler.instance)
+.subscribe{ print($0) }
+.disposed(by: disposeBag)
+
+// 지정된 주기가 지난후 처음 이벤트를 전달(지정된 주기를 초과할 수 있음)
+Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+.debug()
+.take(10)
+.throttle(.milliseconds(2500), latest: false, scheduler: MainScheduler.instance)
+.subscribe{ print($0) }
+.disposed(by: disposeBag)
+
