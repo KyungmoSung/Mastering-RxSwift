@@ -26,9 +26,16 @@ import RxSwift
 /*:
  # buffer
  */
-
+// 특정 주기동안 옵져버블이 방출하는 항목을 수집하고 하나의 배열로 리턴
+// 컨트롤드 버퍼링이라고 함
+// 파라미터는 최대시간, 최대갯수(하나만 충족하면 방출)
+// 수집된 배열을 방출하는 옵저버블을 리턴
 let disposeBag = DisposeBag()
 
-
+Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+    .buffer(timeSpan: .seconds(2), count: 3, scheduler: MainScheduler.instance)
+    .take(5)
+    .subscribe{ print($0) }
+    .disposed(by: disposeBag)
 
 

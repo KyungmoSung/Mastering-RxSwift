@@ -26,6 +26,14 @@ import RxSwift
 /*:
  # scan
  */
+// 기본값으로 연산을 시작
+// 원본 옵저버블이 방출하는 항목을 대상으로 변환을 실행한 다음 결과를 방출하는 하나의 옵저버블을 리턴
+// 원본이 방출하는 항목의 수 = 구독자로 전달되는 항목의 수
 
 let disposeBag = DisposeBag()
 
+// 1~10의 합
+Observable.range(start: 1, count: 10)
+    .scan(0, accumulator: +)
+    .subscribe{ print($0) }
+    .disposed(by: disposeBag)

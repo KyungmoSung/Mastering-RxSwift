@@ -24,13 +24,34 @@ import UIKit
 import RxSwift
 
 /*:
- # window
+ # groupBy
  */
-
+// 방출되는 요소를 조건에 따라 그룹핑
+// flatMap, toArray 를 활용해 최종 결과를 하나의 배열로 방출할 수 있음
 let disposeBag = DisposeBag()
+let words = ["Apple","Banana","Orange","Book","City","Axe"]
 
+// 문자열의 길이를 기준으로 그룹핑
+Observable.from(words)
+    .groupBy { $0.count }
+    .subscribe(onNext: { (groupedObservable) in
+        print("== \(groupedObservable.key)")
+        groupedObservable.subscribe{ print(" \($0)") }
+    })
+    .disposed(by: disposeBag)
 
+print("\n--------------------\n")
+// 첫번째 문자로 그룹핑
+Observable.from(words)
+    .groupBy { $0.first }
+    .flatMap{ $0.toArray() }
+    .subscribe{ print($0) }
+    .disposed(by: disposeBag)
 
-
-
-
+print("\n--------------------\n")
+// 홀짝으로 그룹핑
+Observable.range(start: 1, count: 10)
+    .groupBy{ $0.isMultiple(of: 2) }
+    .flatMap{ $0.toArray() }
+    .subscribe{ print($0) }
+    .disposed(by: disposeBag)

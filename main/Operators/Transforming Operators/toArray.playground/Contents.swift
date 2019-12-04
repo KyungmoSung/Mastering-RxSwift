@@ -27,6 +27,21 @@ import RxSwift
  # toArray
  */
 
+// 하나의 요소를 방출하는 옵저버블로 변환
+// -> 싱글로 변환
+// 더이상 요소를 방출하지 않는 시점에 배열에 담아 전달
+
 let disposeBag = DisposeBag()
 
 
+let subject = PublishSubject<Int>()
+
+subject
+    .toArray()
+    .subscribe{ print($0) }
+    .disposed(by: disposeBag)
+
+subject.onNext(1)
+subject.onNext(2)
+subject.onNext(3)
+subject.onCompleted()
