@@ -27,6 +27,11 @@ import RxSwift
  # merge
  */
 
+// 여러 옵저버블이 배출하는 항목들을 하나의 옵저버블에서 방출하도록 병합
+// concat과 동작방식이 다름
+// concat: 하나의 옵저법블이 모든요소를 방출하고 Completed을 방출하면 이어지는 옵저버블을 연결
+// merge: 두개이상의 옵저버블을 병합하고 모든 옵저버블에서 방출하는 요소들을 순서대로 방출하는 옵저버블을 리턴
+
 let bag = DisposeBag()
 
 enum MyError: Error {
@@ -37,4 +42,22 @@ let oddNumbers = BehaviorSubject(value: 1)
 let evenNumbers = BehaviorSubject(value: 2)
 let negativeNumbers = BehaviorSubject(value: -1)
 
+let source = Observable.of(oddNumbers, evenNumbers)
+
+// 단순히 뒤에 연결하는것이 아니라 하나의 옵저버블로 합쳐줌
+source
+    .merge()
+    .subscribe{ print($0) }
+    .disposed(by: bag)
+
+oddNumbers.onNext(3)
+evenNumbers.onNext(4)
+
+evenNumbers.onNext(6)
+oddNumbers.onNext(5)
+
+//oddNumbers.onCompleted() //병합한 모든 옵저버블이 Completed되면 구독자에게 Completed전달
+oddNumbers.onError(MyError.error) //Error 전달, 이후 이벤트 받지 않음
+evenNumbers.onNext(7)
+evenNumbers.onCompleted()
 

@@ -26,9 +26,20 @@ import RxSwift
 /*:
  # concat
  */
+// 두개의 옵저버블을 연결할떄 사용
+// 타입메소드와 인스턴스메소드로 구현되어 있음
 
 let bag = DisposeBag()
 let fruits = Observable.from(["🍏", "🍎", "🥝", "🍑", "🍋", "🍉"])
 let animals = Observable.from(["🐶", "🐱", "🐹", "🐼", "🐯", "🐵"])
 
+// 타입 메소드
+Observable.concat([fruits, animals])
+    .subscribe{ print($0) }
+    .disposed(by: bag)
+
+// 인스턴스 메소드
+fruits.concat(animals)
+    .subscribe{ print($0) }
+    .disposed(by: bag)
 
