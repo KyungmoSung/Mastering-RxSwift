@@ -26,7 +26,9 @@ import RxSwift
 /*:
  # zip
  */
-
+// 옵저버블을 결합
+// 클로저에게 중복된 요소를 전달하지 않음
+// 인덱스를 기준으로 짝을 일치시켜 전달(첫번째끼리, 두번째끼리 결합)
 let bag = DisposeBag()
 
 enum MyError: Error {
@@ -36,3 +38,19 @@ enum MyError: Error {
 let numbers = PublishSubject<Int>()
 let strings = PublishSubject<String>()
 
+Observable.zip(numbers, strings) { "\($0) - \($1)" }
+    .subscribe { print($0) }
+    .disposed(by: bag)
+
+numbers.onNext(1)
+strings.onNext("one")
+
+numbers.onNext(2)
+numbers.onNext(3)
+strings.onNext("two")
+
+numbers.onCompleted()
+
+strings.onNext("three")
+
+strings.onCompleted()

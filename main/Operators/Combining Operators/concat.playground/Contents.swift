@@ -30,8 +30,8 @@ import RxSwift
 // 타입메소드와 인스턴스메소드로 구현되어 있음
 
 let bag = DisposeBag()
-let fruits = Observable.from(["🍏", "🍎", "🥝", "🍑", "🍋", "🍉"])
-let animals = Observable.from(["🐶", "🐱", "🐹", "🐼", "🐯", "🐵"])
+let fruits = Observable.from(["🍏", "🍎"])
+let animals = Observable.from(["🐶", "🐱"])
 
 // 타입 메소드
 Observable.concat([fruits, animals])

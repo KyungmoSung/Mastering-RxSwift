@@ -26,7 +26,9 @@ import RxSwift
 /*:
  # reduce
  */
-
+// 시드 값과 옵저버블이 방출하는 요소를 대상으로 클로저를 실행하고 최종 결과를 옵저버블로 방출
+// 중간결과와 최종결과가 모두 필요하면 scan 연산자
+// 최종결과만 필요하면 reduce 연산자
 let bag = DisposeBag()
 
 enum MyError: Error {
@@ -43,5 +45,6 @@ o.scan(0, accumulator: +)
 
 print("== reduce")
 
-
-
+o.reduce(0, accumulator: +)
+    .subscribe{ print($0) }
+    .disposed(by: bag)

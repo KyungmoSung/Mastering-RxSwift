@@ -56,8 +56,8 @@ evenNumbers.onNext(4)
 evenNumbers.onNext(6)
 oddNumbers.onNext(5)
 
-//oddNumbers.onCompleted() //병합한 모든 옵저버블이 Completed되면 구독자에게 Completed전달
-oddNumbers.onError(MyError.error) //Error 전달, 이후 이벤트 받지 않음
+oddNumbers.onCompleted() //병합한 모든 옵저버블이 Completed되면 구독자에게 Completed전달
+//oddNumbers.onError(MyError.error) //Error 전달, 이후 이벤트 받지 않음
 evenNumbers.onNext(7)
 evenNumbers.onCompleted()
 

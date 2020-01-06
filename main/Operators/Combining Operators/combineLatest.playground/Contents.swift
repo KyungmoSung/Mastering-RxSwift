@@ -26,7 +26,8 @@ import RxSwift
 /*:
  # combineLatest
  */
-
+// 소스 옵저버블을 결합
+// 파라미터로 전달한 함수를 실행하고 결과를 방출하는 새로운 옵저버블을 리턴
 let bag = DisposeBag()
 
 enum MyError: Error {
@@ -36,4 +37,20 @@ enum MyError: Error {
 let greetings = PublishSubject<String>()
 let languages = PublishSubject<String>()
 
+Observable.combineLatest(greetings, languages) { lhs, rhs -> String in
+    return "\(lhs) \(rhs)"
+}
+    .subscribe{ print($0) }
+    .disposed(by: bag)
 
+greetings.onNext("Hi")
+languages.onNext("World!")
+
+greetings.onNext("Hello")
+languages.onNext("RxSwift")
+
+greetings.onCompleted()
+
+languages.onNext("SwiftUI")
+
+languages.onCompleted()

@@ -26,7 +26,8 @@ import RxSwift
 /*:
  # withLatestFrom
  */
-
+// 트리거 옵저버블이 Next 이벤트를 방출하면 데이터 옵저버블이 가장 최근에 방출한 Next 이벤트를 구독자에게 전달
+// ex)회원가입 버튼을 탭하는 시점에 텍스트필드에 들어가있는 값을 가져올때
 let bag = DisposeBag()
 
 enum MyError: Error {
@@ -36,4 +37,15 @@ enum MyError: Error {
 let trigger = PublishSubject<Void>()
 let data = PublishSubject<String>()
 
+trigger.withLatestFrom(data)
+    .subscribe { print($0) }
+    .disposed(by: bag)
 
+data.onNext("Hello")
+trigger.onNext(())
+trigger.onNext(())
+
+data.onCompleted()
+trigger.onNext(())
+
+trigger.onCompleted()
