@@ -27,15 +27,15 @@ import RxSwift
  # delay
  */
 
-// Next 이벤트가 전달되는 시점을 지연시킴
-// 구독시점을 지연시키지는 않음
+// 구독이 시작되는 시점을 지연시킴
+// Next 이벤트는 지연시키지 않고 바로 전달
 
 let bag = DisposeBag()
 
 Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
     .take(6)
     .debug()
-    .delay(.seconds(3), scheduler: MainScheduler.instance)
+    .delaySubscription(.seconds(3), scheduler: MainScheduler.instance)
     .subscribe { print($0) }
     .disposed(by: bag)
 

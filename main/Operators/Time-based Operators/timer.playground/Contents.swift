@@ -26,7 +26,10 @@ import RxSwift
 /*:
  # timer
  */
-
+// 지연 시간과 반복 주기를 지정해서 정수를 방출
+// 중지하려면 직접 dispose 호출
 let bag = DisposeBag()
 
-
+Observable<Int>.timer(.seconds(3), period: .seconds(1), scheduler: MainScheduler.instance)
+    .subscribe{ print($0) }
+    .disposed(by: bag)

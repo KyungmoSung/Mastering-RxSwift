@@ -26,7 +26,8 @@ import RxSwift
 /*:
  # amb
  */
-
+// 여러 옵저버블 중에서 가장 먼저 이벤트를 방출하는 옵저버블을 선택
+// 여러 서버로 데이터를 요청하고 가장 빠른 응답을 처리하는 패턴 구현 가능
 let bag = DisposeBag()
 
 enum MyError: Error {
@@ -37,4 +38,12 @@ let a = PublishSubject<String>()
 let b = PublishSubject<String>()
 let c = PublishSubject<String>()
 
+Observable.amb([a, b, c])
+    .subscribe{ print($0) }
+    .disposed(by: bag)
 
+a.onNext("A")
+b.onNext("B")
+
+b.onCompleted() //무시됨
+a.onCompleted()

@@ -26,9 +26,23 @@ import RxSwift
 /*:
  # timeout
  */
-
+// 지정된 시간 이내에 요소를 방출하지 않으면 에러 이벤트를 전달
 let bag = DisposeBag()
 
 let subject = PublishSubject<Int>()
 
+// 에러 방출 error(Sequence timeout.)
+//subject.timeout(.seconds(3), scheduler: MainScheduler.instance)
+//    .subscribe{ print($0) }
+//    .disposed(by: bag)
+
+// 에러 대신 다른 옵저버블 방출
+subject.timeout(.seconds(3), other:Observable.just(1), scheduler: MainScheduler.instance)
+    .subscribe{ print($0) }
+    .disposed(by: bag)
+
+
+Observable<Int>.timer(.seconds(2), period: .seconds(5), scheduler: MainScheduler.instance)
+    .subscribe(onNext: { subject.onNext($0) })
+    .disposed(by: bag)
 
