@@ -24,25 +24,55 @@ import UIKit
 import RxSwift
 
 /*:
- # window
+ # throttle
  */
-// 최대시간, 최대갯수를 지정해 원본 옵저버블이 방출하는 항목들을 작은 단위의 옵저버블로 분해
-// 옵저버블을 리턴
-// 옵저버블을 방출하는 옵저버블을 리턴(Inner Observable)
+
 let disposeBag = DisposeBag()
 
+// 지정된 주기동안 하나의 이벤트만 구독자에게 전달
+// 짧은시간동안 반복되는 탭, 델리게이트는 쓰로틀
+// 디바운스는 보통 검색 기능
 
-Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
-    .window(timeSpan: .seconds(2), count: 3, scheduler: MainScheduler.instance)
-    .take(5)
-    .subscribe{
-        print($0)
-        
-        if let observable = $0.element {
-            observable.subscribe { print("inner : \($0)") }
+let buttonTap = Observable<String>.create{ observer in
+    DispatchQueue.global().async {
+        for i in 1...10 {
+            observer.onNext("Tap \(i)")
+            Thread.sleep(forTimeInterval: 0.3)
         }
+        
+        Thread.sleep(forTimeInterval: 1)
+        
+        for i in 11...20 {
+            observer.onNext("Tap \(i)")
+            Thread.sleep(forTimeInterval: 0.5)
+        }
+        
+        observer.onCompleted()
+    }
+    
+    
+    return Disposables.create()
 }
-    .disposed(by: disposeBag)
 
 
+//buttonTap
+//    .throttle(.milliseconds(1000), scheduler: MainScheduler.instance)
+//    .subscribe{ print($0) }
+//    .disposed(by: disposeBag)
+
+// 지정된 주기 마지막 이벤트를 전달(지정된 주기를 엄격하게 지킴)
+Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+.debug()
+.take(10)
+.throttle(.milliseconds(2500), latest: true, scheduler: MainScheduler.instance)
+.subscribe{ print($0) }
+.disposed(by: disposeBag)
+
+// 지정된 주기가 지난후 처음 이벤트를 전달(지정된 주기를 초과할 수 있음)
+Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+.debug()
+.take(10)
+.throttle(.milliseconds(2500), latest: false, scheduler: MainScheduler.instance)
+.subscribe{ print($0) }
+.disposed(by: disposeBag)
 

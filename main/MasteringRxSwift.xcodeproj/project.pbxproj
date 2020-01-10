@@ -66,12 +66,13 @@
 
 /* Begin PBXFileReference section */
 		81D6A7D352D4EED13040E6E8 /* Pods-MasteringRxSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasteringRxSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-MasteringRxSwift/Pods-MasteringRxSwift.release.xcconfig"; sourceTree = "<group>"; };
-		8408B26723C5B3E9002BC995 /* delaySubscription.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = delaySubscription.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		84F56E0D23977EE800B17A3D /* groupBy.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = groupBy.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8BC0B83444D86C5EE22CA3E8 /* Pods-MasteringRxSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MasteringRxSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MasteringRxSwift/Pods-MasteringRxSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		AA01CE2322E33F060002BB18 /* Hello.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Hello.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA01CE2522E33F430002BB18 /* Observables.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Observables.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA01CE2622E34BB80002BB18 /* Observers.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Observers.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		AA10BEE6235C41A200D20CAC /* share.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = share.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		AA10BEE7235C41EE00D20CAC /* replay.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = replay.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		AA10BEE8235C420200D20CAC /* publish.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = publish.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA1932B5231937070019286D /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		AA1932B823193DD20019286D /* TableView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TableView.storyboard; sourceTree = "<group>"; };
 		AA1932BB23193FEB0019286D /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
@@ -85,9 +86,11 @@
 		AA1D2E4C22967B260044E487 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA1D2E5422967F960044E487 /* create.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = create.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA1D2E56229683EB0044E487 /* error.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = error.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		AA1EB6FF235A020C0043013B /* overview.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = overview.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA214E3422F4140500EF775C /* PublishSubject.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = PublishSubject.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA214E3522F42CAE00EF775C /* BehaviorSubject.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = BehaviorSubject.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA214E3622F43DE900EF775C /* ReplaySubject.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ReplaySubject.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		AA21C624235C45B500446DD4 /* multicast.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = multicast.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA2A8EDA22A23F66003F79C1 /* just.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = just.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA2E397522FEDBE700E204BF /* merge.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = merge.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA2E397622FEF7D200E204BF /* combineLatest.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = combineLatest.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -122,6 +125,7 @@
 		AA4EBBB822B90E0700A8488E /* flatMapLatest.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = flatMapLatest.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA4FD76522E41F35003545B6 /* Disposables.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Disposables.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA50304622EAD592006AA44B /* Operators.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Operators.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		AA53E82E2359C17E00B83C5A /* delaySubscription.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = delaySubscription.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA5F4F5C22B936A700A9D8C8 /* scan.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = scan.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA62149023220D950002A1FE /* NotificationCenter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NotificationCenter.storyboard; sourceTree = "<group>"; };
 		AA6214922322107C0002A1FE /* CocoaTouchNotificationCenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocoaTouchNotificationCenterViewController.swift; sourceTree = "<group>"; };
@@ -138,7 +142,7 @@
 		AA64FA4C22A4A90200CF3EF0 /* takeLast.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = takeLast.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA64FA4D22A4A98200CF3EF0 /* single.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = single.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA64FA4E22A4A99100CF3EF0 /* distinctUntilChanged.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = distinctUntilChanged.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		AA64FA4F22A4A9B300CF3EF0 /* debounce.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = debounce.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		AA64FA4F22A4A9B300CF3EF0 /* debounce.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = debounce.playground; path = "Operators/Filtering Operators/debounce.playground"; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA64FA5022A4A9C100CF3EF0 /* throttle.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = throttle.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA64FA5122A4A9D100CF3EF0 /* sample.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = sample.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AA64FA5222A4A9EC00CF3EF0 /* sampleLatest.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = sampleLatest.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -211,6 +215,8 @@
 		AAA9F94A230524A000539F6C /* timer.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = timer.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AAA9F94B230524AD00539F6C /* timeout.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = timeout.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AAA9F94C230524BE00539F6C /* delay.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = delay.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		AAE3C8B62357547100A34940 /* groupBy.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = groupBy.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		AAECCD00235C92CF001F8383 /* refCount.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = refCount.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AAFD61CB23081C38006ECD19 /* Scheduler.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Scheduler.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		AAFF6F70231FB23C00B86AF7 /* AlertController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AlertController.storyboard; sourceTree = "<group>"; };
 		AAFF6F72231FB83200B86AF7 /* CocoaTouchAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocoaTouchAlertViewController.swift; sourceTree = "<group>"; };
@@ -303,6 +309,7 @@
 				AA01CE2422E33F270002BB18 /* KeyConcepts */,
 				AA214E3322F413F100EF775C /* Subjects */,
 				AA1D2E5322967F890044E487 /* Operators */,
+				AA1EB6FE2359FFB70043013B /* SharingSubscription */,
 				AAFD61CA23081C18006ECD19 /* Scheduler */,
 				AA74F912230B002A004B97FF /* ErrorHandling */,
 				AA1D2E3F22967B250044E487 /* MasteringRxSwift */,
@@ -368,6 +375,19 @@
 				AA1D2E56229683EB0044E487 /* error.playground */,
 			);
 			path = "Creating Operators";
+			sourceTree = "<group>";
+		};
+		AA1EB6FE2359FFB70043013B /* SharingSubscription */ = {
+			isa = PBXGroup;
+			children = (
+				AA1EB6FF235A020C0043013B /* overview.playground */,
+				AA21C624235C45B500446DD4 /* multicast.playground */,
+				AA10BEE8235C420200D20CAC /* publish.playground */,
+				AA10BEE7235C41EE00D20CAC /* replay.playground */,
+				AAECCD00235C92CF001F8383 /* refCount.playground */,
+				AA10BEE6235C41A200D20CAC /* share.playground */,
+			);
+			path = SharingSubscription;
 			sourceTree = "<group>";
 		};
 		AA214E3322F413F100EF775C /* Subjects */ = {
@@ -609,7 +629,7 @@
 				AA5F4F5C22B936A700A9D8C8 /* scan.playground */,
 				AAA99FD822B9E484007AAEEC /* buffer.playground */,
 				AAA99FD922B9F66A007AAEEC /* window.playground */,
-				84F56E0D23977EE800B17A3D /* groupBy.playground */,
+				AAE3C8B62357547100A34940 /* groupBy.playground */,
 			);
 			path = "Transforming Operators";
 			sourceTree = "<group>";
@@ -723,7 +743,7 @@
 				AAA9F94A230524A000539F6C /* timer.playground */,
 				AAA9F94B230524AD00539F6C /* timeout.playground */,
 				AAA9F94C230524BE00539F6C /* delay.playground */,
-				8408B26723C5B3E9002BC995 /* delaySubscription.playground */,
+				AA53E82E2359C17E00B83C5A /* delaySubscription.playground */,
 			);
 			path = "Time-based Operators";
 			sourceTree = "<group>";
@@ -766,7 +786,7 @@
 				AA1D2E3922967B250044E487 /* Sources */,
 				AA1D2E3A22967B250044E487 /* Frameworks */,
 				AA1D2E3B22967B250044E487 /* Resources */,
-				6B6BA187D24FD4148C792985 /* [CP] Embed Pods Frameworks */,
+				B75B6D84A8C600399DC2689D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -859,7 +879,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6B6BA187D24FD4148C792985 /* [CP] Embed Pods Frameworks */ = {
+		B75B6D84A8C600399DC2689D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1068,26 +1088,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 673W69H5AB;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Action\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Differentiator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/NSObject+Rx\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxAlamofire\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxCocoa\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxDataSources\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxGesture\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxKeyboard\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxReachability\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxRelay\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwiftExt\"",
-					"$(SRCROOT)",
-				);
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MasteringRxSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1108,26 +1110,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 673W69H5AB;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Action\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Differentiator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/NSObject+Rx\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReachabilitySwift\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxAlamofire\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxCocoa\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxDataSources\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxGesture\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxKeyboard\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxReachability\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxRelay\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwiftExt\"",
-					"$(SRCROOT)",
-				);
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MasteringRxSwift/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
