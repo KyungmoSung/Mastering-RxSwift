@@ -26,9 +26,11 @@ import RxSwift
 /*:
  # Sharing Subscription
  */
+// 구독 공유를 통해서 불필요한 중복 작업을 방지
 
 let bag = DisposeBag()
 
+// api서버에서 전달받은 문자열을 방출하는 옵저버블
 let source = Observable<String>.create { observer in
    let url = URL(string: "https://kxcoding-study.azurewebsites.net/api/string")!
    let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -46,7 +48,6 @@ let source = Observable<String>.create { observer in
 }
 .debug()
 .share()
-
 
 source.subscribe().disposed(by: bag)
 source.subscribe().disposed(by: bag)
