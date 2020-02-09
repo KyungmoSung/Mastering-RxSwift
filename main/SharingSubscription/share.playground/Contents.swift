@@ -27,8 +27,17 @@ import RxSwift
  # share
  */
 
+// share연산자가 리턴하는 옵저버블은 refCount옵저버블
+// replay: 버퍼 사이즈
+// whileConnected: 새로운 구독자(커넥션)가 추가되면 서브젝트를 생성하고 이어지는 구독자는 이 서브젝트를 공유, 커넥션이 종료되면 서브젝트는 사라지고 커넥션마다 새로운 서브젝트가 생성됨
+//커넥션은 다른커넥션과 격리되어있음(isolated)
+// forever: 모든 구독자(커넥션)이 하나의 서브젝트를 공유함
+
 let bag = DisposeBag()
-let source = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance).debug()
+let source = Observable<Int>
+  .interval(.seconds(1), scheduler: MainScheduler.instance)
+  .debug()
+  .share(replay: 5, scope: .forever)
 
 let observer1 = source
    .subscribe { print("🔵", $0) }
@@ -40,6 +49,7 @@ let observer2 = source
 DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
    observer1.dispose()
    observer2.dispose()
+  //disconnect
 }
 
 DispatchQueue.main.asyncAfter(deadline: .now() + 7) {

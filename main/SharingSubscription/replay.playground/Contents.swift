@@ -27,18 +27,24 @@ import RxSwift
  # replay, replayAll
  */
 
+// 이후에 구독자에게 이전에 전달되었던 이벤트도 전달해야할 경우
+// PublishSubject 대신 ReplaySubject로 만들면 됨
+// ReplaySubject를 자동으로 생성해주는 replay 연산자를 사용하면 더 간결해짐
+
 let bag = DisposeBag()
-let subject = PublishSubject<Int>()
-let source = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance).take(5).multicast(subject)
+let source = Observable<Int>
+  .interval(.seconds(1), scheduler: MainScheduler.instance)
+  .take(5)
+  .replay(5)
 
 source
-   .subscribe { print("🔵", $0) }
-   .disposed(by: bag)
+  .subscribe { print("🔵", $0) }
+  .disposed(by: bag)
 
 source
-   .delaySubscription(.seconds(3), scheduler: MainScheduler.instance)
-   .subscribe { print("🔴", $0) }
-   .disposed(by: bag)
+  .delaySubscription(.seconds(3), scheduler: MainScheduler.instance)
+  .subscribe { print("🔴", $0) }
+  .disposed(by: bag)
 
 source.connect()
 

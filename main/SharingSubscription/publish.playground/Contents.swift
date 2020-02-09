@@ -27,18 +27,23 @@ import RxSwift
  # publish
  */
 
+// PublishSubject를 자동으로 생성해주는 것을 제외하면 multicast와 동일함
+
 let bag = DisposeBag()
-let subject = PublishSubject<Int>()
-let source = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance).take(5).multicast(subject)
+
+let source = Observable<Int>
+  .interval(.seconds(1), scheduler: MainScheduler.instance)
+  .take(5)
+  .publish()
 
 source
-   .subscribe { print("🔵", $0) }
-   .disposed(by: bag)
+  .subscribe { print("🔵", $0) }
+  .disposed(by: bag)
 
 source
-   .delaySubscription(.seconds(3), scheduler: MainScheduler.instance)
-   .subscribe { print("🔴", $0) }
-   .disposed(by: bag)
+  .delaySubscription(.seconds(3), scheduler: MainScheduler.instance)
+  .subscribe { print("🔴", $0) }
+  .disposed(by: bag)
 
 source.connect()
 
