@@ -26,37 +26,35 @@ import RxSwift
 /*:
  # retry
  */
-
-//에러 발생시 구독을 해제하고 새로운 구독을 시작
-//
-
+// 옵저버블에서 에러가 발생하면 구독을 해지하고 새로운 구독을 시작
+// 파라미터에 최대 재시도 횟수 + 1(첫시도)
 let bag = DisposeBag()
 
 enum MyError: Error {
-    case error
+  case error
 }
 
 var attempts = 1
 
 let source = Observable<Int>.create { observer in
-    let currentAttempts = attempts
-    print("#\(currentAttempts) START")
+  let currentAttempts = attempts
+  print("#\(currentAttempts) START")
 
-    if attempts < 3 {
-        observer.onError(MyError.error)
-        attempts += 1
-    }
+  if attempts < 3 {
+    observer.onError(MyError.error)
+    attempts += 1
+  }
 
-    observer.onNext(1)
-    observer.onNext(2)
-    observer.onCompleted()
+  observer.onNext(1)
+  observer.onNext(2)
+  observer.onCompleted()
 
-    return Disposables.create {
-        print("#\(currentAttempts) END")
-    }
+  return Disposables.create {
+    print("#\(currentAttempts) END")
+  }
 }
 
 source
-    .retry()
-    .subscribe { print($0) }
-    .disposed(by: bag)
+  .retry(5) // 4번 재시도
+  .subscribe { print($0) }
+  .disposed(by: bag)

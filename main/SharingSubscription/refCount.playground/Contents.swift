@@ -27,23 +27,29 @@ import RxSwift
  # refCount
  */
 
+// ConnectableObservable 익스텐션에 구현되어있기 때문에 일반 Observable에서는 사용할 수 없음
+// 내부에서 connect를 자동으로 호출함
+// 다른 연산자는 ConnectableObservable을 직접 관리 해야하지만 (connect, dispose, take...) refCount는 자동으로 처리되기때문에 더 간편함
+
 let bag = DisposeBag()
-let source = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance).debug().publish()
+let source = Observable<Int>
+  .interval(.seconds(1), scheduler: MainScheduler.instance)
+  .debug()
+  .publish()
+  .refCount()
 
 let observer1 = source
-   .subscribe { print("🔵", $0) }
+   .subscribe { print("🔵", $0) } // connect
 
-source.connect()
-
-DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-   observer1.dispose()
+DispatchQueue.main.asyncAfter(deadline: .now() + 3) { // 3초 후 구독 취소
+   observer1.dispose() // 다른 구독자가 없기때문에 disconnect
 }
 
-DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
-   let observer2 = source.subscribe { print("🔴", $0) }
+DispatchQueue.main.asyncAfter(deadline: .now() + 7) { // 7초 후 구독 시작
+  let observer2 = source.subscribe { print("🔴", $0) } // connect
 
-   DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-      observer2.dispose()
+   DispatchQueue.main.asyncAfter(deadline: .now() + 3) { // 3초 후 구독 취소
+      observer2.dispose() // disconnect
    }
 }
 

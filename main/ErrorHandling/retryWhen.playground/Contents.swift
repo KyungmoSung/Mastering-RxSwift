@@ -26,7 +26,8 @@ import RxSwift
 /*:
  # retryWhen
  */
-
+// 사용자가 재시도 버튼을 탭할때만 재시도를 할 경우
+// 클로저를 파라미터로 받고 TriggerObservable 리턴
 let bag = DisposeBag()
 
 enum MyError: Error {
@@ -56,8 +57,10 @@ let source = Observable<Int>.create { observer in
 let trigger = PublishSubject<Void>()
 
 source
+  .retryWhen { _ in trigger }
    .subscribe { print($0) }
    .disposed(by: bag)
 
-
+trigger.onNext(()) // triggerObservable에서 next 이벤트가 전달될때 재시도
+trigger.onNext(())
 
