@@ -27,32 +27,36 @@ import RxSwift
  # retry
  */
 
+//에러 발생시 구독을 해제하고 새로운 구독을 시작
+//
+
 let bag = DisposeBag()
 
 enum MyError: Error {
-   case error
+    case error
 }
 
 var attempts = 1
 
 let source = Observable<Int>.create { observer in
-   let currentAttempts = attempts
-   print("#\(currentAttempts) START")
-   
-   if attempts < 3 {
-      observer.onError(MyError.error)
-      attempts += 1
-   }
-   
-   observer.onNext(1)
-   observer.onNext(2)
-   observer.onCompleted()
-         
-   return Disposables.create {
-      print("#\(currentAttempts) END")
-   }
+    let currentAttempts = attempts
+    print("#\(currentAttempts) START")
+
+    if attempts < 3 {
+        observer.onError(MyError.error)
+        attempts += 1
+    }
+
+    observer.onNext(1)
+    observer.onNext(2)
+    observer.onCompleted()
+
+    return Disposables.create {
+        print("#\(currentAttempts) END")
+    }
 }
 
 source
-   .subscribe { print($0) }
-   .disposed(by: bag)
+    .retry()
+    .subscribe { print($0) }
+    .disposed(by: bag)

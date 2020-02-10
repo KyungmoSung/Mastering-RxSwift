@@ -26,6 +26,9 @@ import RxSwift
 /*:
  # catchError
  */
+//next이벤트와 completed이벤트는 구독자에게 그대로 전달
+//error는 전달하지 않고 새로운 옵져버블로 교체
+//네트워크 요청을 구현할때 많이 사용함
 
 let bag = DisposeBag()
 
@@ -37,9 +40,13 @@ let subject = PublishSubject<Int>()
 let recovery = PublishSubject<Int>()
 
 subject
+    .catchError { _ in recovery } // 에러 발생시 recovery로 고체
    .subscribe { print($0) }
    .disposed(by: bag)
 
+subject.onError(MyError.error)
 
+subject.onNext(1) // 소스 옵저버블은 새로운 요소를 전달하지 못함
 
-
+recovery.onNext(2) // 새로운 요소를 방출할 수 있음
+recovery.onCompleted()

@@ -27,17 +27,21 @@ import RxSwift
  # catchErrorJustReturn
  */
 
+// 옵저버블 대신 기본값을 리턴
+// 발생한 에러의 종류와 관계없이 항상 동일값이 리턴됨
+
 let bag = DisposeBag()
 
 enum MyError: Error {
-   case error
+    case error
 }
 
 let subject = PublishSubject<Int>()
 
 subject
-   .subscribe { print($0) }
-   .disposed(by: bag)
+    .catchErrorJustReturn(-1)
+    .subscribe { print($0) }
+    .disposed(by: bag)
 
 subject.onError(MyError.error)
 
