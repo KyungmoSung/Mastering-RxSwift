@@ -40,6 +40,8 @@ class RxCocoaAlertViewController: UIViewController {
    override func viewDidLoad() {
       super.viewDidLoad()
       
+    oneActionAlertButton.rx.tap
+        .subscribe{
       
    }
 }
@@ -49,3 +51,23 @@ enum ActionType {
    case cancel
 }
 
+extension UIViewController {
+    func info(title: String, message: String? = nil) -> Observable<ActionType> {
+        return Observable.create{ [weak self] observer in
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                observer.onNext(.ok) // 버튼을 누르는 시점에 next이벤트 전달
+                observer.onCompleted()
+            }
+            
+            alert.addAction(okAction)
+            self?.present(alert, animated: true, completion: nil)
+            
+            return Disposables.create {
+                alert.dismiss(animated: true, completion: nil)
+            }
+            
+        }
+    }
+}
